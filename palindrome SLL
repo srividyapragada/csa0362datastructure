@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Define a singly linked list node
+struct Node {
+    char data;
+    struct Node* next;
+};
+
+// Function to insert a character at the end of the linked list
+void insert(struct Node** head, char data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (*head == NULL) {
+        *head = newNode;
+        return;
+    }
+
+    struct Node* current = *head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newNode;
+}
+
+// Function to check if a string is a palindrome
+int isPalindrome(struct Node* head, char* str) {
+    struct Node* current = head;
+    int len = strlen(str);
+for (int i = len - 1; i >= 0; i--) {
+        if (current == NULL || current->data != str[i]) {
+            return 0;
+        }
+        current = current->next;
+    }
+
+    return 1;
+}
+
+int main() {
+    struct Node* head = NULL;
+    char str[100];
+
+    printf("Enter a string: ");
+    scanf("%s", str);
+
+    // Create a linked list from the input string
+    for (int i = 0; i < strlen(str); i++) {
+        insert(&head, str[i]);
+    }
+
+    // Check if the string is a palindrome
+    if (isPalindrome(head, str)) {
+        printf("The string is a palindrome.\n");
+ } else {
+        printf("The string is not a palindrome.\n");
+    }
+    
+    return 0;
+}
