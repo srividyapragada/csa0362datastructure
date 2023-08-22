@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}; // Replace this with your array elements
+    int length = sizeof(array) / sizeof(array[0]); // Calculate the length of the array
+    
+    if (length >= 5) {
+        printf("The 5th iterated element is: %d\n", array[4]); // Arrays are zero-indexed
+    } else {
+        printf("The array does not have a 5th iterated element.\n");
+    }
+    
+    return 0;
+}
