@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+void findElementsRepeatedTwice(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        int count = 0;
+        for (int j = 0; j < size; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+            }
+        }
+        if (count == 2) {
+            printf("%d is repeated twice.\n", arr[i]);
+        }
+    }
+}
+
+int main() {
+    int array[] = {1, 2, 3, 2, 4, 5, 6, 5}; // Replace this with your array
+    int size = sizeof(array) / sizeof(array[0]);
+
+    findElementsRepeatedTwice(array, size);
+    
+    return 0;
+}
