@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_SIZE 100
+
+int stack1[MAX_SIZE];
+int stack2[MAX_SIZE];
+int top1 = -1;
+int top2 = -1;
+
+void push1(int value) {
+    if (top1 == MAX_SIZE - 1) {
+        printf("Stack 1 is full. Cannot push %d.\n", value);
+    } else {
+        stack1[++top1] = value;
+    }
+}
+
+int pop1() {
+    if (top1 == -1) {
+        printf("Stack 1 is empty.\n");
+        return -1; // Return a sentinel value to indicate an empty stack
+    } else {
+        return stack1[top1--];
+    }
+}
+
+void push2(int value) {
+    if (top2 == MAX_SIZE - 1) {
+        printf("Stack 2 is full. Cannot push %d.\n", value);
+    } else {
+        stack2[++top2] = value;
+    }
+}
+int pop2() {
+    if (top2 == -1) {
+        printf("Stack 2 is empty.\n");
+        return -1; // Return a sentinel value to indicate an empty stack
+    } else {
+        return stack2[top2--];
+    }
+}
+
+int main() {
+    push1(10);
+    push1(20);
+    push1(30);
+
+    push2(40);
+    push2(50);
+    push2(60);
+
+    int bottom1 = stack1[0];
+    int top1Value = pop1();
+
+    int bottom2 = stack2[0];
+    int top2Value = pop2();
+
+    printf("Bottom element of stack 1: %d\n", bottom1);
+    printf("Top element of stack 1: %d\n", top1Value);
+
+    printf("Bottom element of stack 2: %d\n", bottom2);
+    printf("Top element of stack 2: %d\n", top2Value);
+    
+    return 0;
+}
