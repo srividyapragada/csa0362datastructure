@@ -1,0 +1,31 @@
+# include <stdio.h>
+
+void concatenateArrays(int arr1[], int size1, int arr2[], int size2, int result[]) {
+    for (int i = 0; i < size1; i++) {
+        result[i] = arr1[i];
+    }
+
+    for (int i = 0; i < size2; i++) {
+        result[size1 + i] = arr2[i];
+    }
+}
+
+int main() {
+    int array1[] = {1, 2, 3}; // First array
+    int size1 = sizeof(array1) / sizeof(array1[0]);
+
+    int array2[] = {4, 5, 6}; // Second array
+    int size2 = sizeof(array2) / sizeof(array2[0]);
+
+    int concatenatedSize = size1 + size2;
+    int concatenatedArray[concatenatedSize]; // Resultant concatenated array
+
+    concatenateArrays(array1, size1, array2, size2, concatenatedArray);
+
+    printf("Concatenated array: ");
+    for (int i = 0; i < concatenatedSize; i++) {
+        printf("%d ", concatenatedArray[i]);
+    }
+    
+    return 0;
+}
