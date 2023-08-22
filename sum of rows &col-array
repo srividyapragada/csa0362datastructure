@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+void calculateRowSums(int arr[][COLS], int rowSums[]) {
+    for (int i = 0; i < ROWS; i++) {
+        rowSums[i] = 0;
+        for (int j = 0; j < COLS; j++) {
+            rowSums[i] += arr[i][j];
+        }
+    }
+}
+
+void calculateColumnSums(int arr[][COLS], int colSums[]) {
+    for (int j = 0; j < COLS; j++) {
+        colSums[j] = 0;
+        for (int i = 0; i < ROWS; i++) {
+            colSums[j] += arr[i][j];
+        }
+    }
+}
+
+int main() {
+    int matrix[ROWS][COLS] = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    int rowSums[ROWS];
+    int colSums[COLS];
+calculateRowSums(matrix, rowSums);
+    calculateColumnSums(matrix, colSums);
+
+    printf("Row sums:\n");
+    for (int i = 0; i < ROWS; i++) {
+        printf("Row %d: %d\n", i + 1, rowSums[i]);
+    }
+
+    printf("\nColumn sums:\n");
+    for (int j = 0; j < COLS; j++) {
+        printf("Column %d: %d\n", j + 1, colSums[j]);
+    }
+    
+    return 0;
+}
