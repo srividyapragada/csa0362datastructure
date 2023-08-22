@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define a linked list node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+// Function to insert a new node at the beginning of the linked list
+void insertAtBeginning(struct Node** head, int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// Function to delete a node with a given value from the linked list
+void deleteNode(struct Node** head, int key) {
+    struct Node* temp = *head;
+    struct Node* prev = NULL;
+
+    // Search for the node to be deleted
+    while (temp != NULL && temp->data != key) {
+        prev = temp;
+        temp = temp->next;
+    }
+
+    // If the key was not found
+    if (temp == NULL) {
+        printf("Key not found in the linked list.\n");
+        return;
+}
+
+    // Update the linked list
+    if (prev != NULL) {
+        prev->next = temp->next;
+    } else {
+        *head = temp->next;
+    }
+
+    free(temp);
+}
+
+// Function to display the linked list
+void display(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Insert nodes at the beginning
+    insertAtBeginning(&head, 3);
+    insertAtBeginning(&head, 5);
+    insertAtBeginning(&head, 7);
+
+    printf("Linked List after insertion: ");
+    display(head);
+
+    // Delete a node
+ deleteNode(&head, 5);
+
+    printf("Linked List after deletion: ");
+    display(head);
+    
+    return 0;
+}
