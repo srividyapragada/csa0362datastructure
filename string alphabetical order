@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Function to compare two strings for qsort
+int compareStrings(const void *a, const void *b) {
+    return strcmp(*(const char **)a, *(const char **)b);
+}
+
+int main() {
+    int n;
+    printf("Enter the number of strings: ");
+    scanf("%d", &n);
+    getchar(); // Consume the newline character left by scanf
+
+    // Allocate memory for an array of strings
+    char **strings = (char **)malloc(n * sizeof(char *));
+    
+    if (strings == NULL) {
+        printf("Memory allocation failed.\n");
+        return 1;
+    }
+
+    // Input the strings
+    for (int i = 0; i < n; i++) {
+        printf("Enter string %d: ", i + 1);
+        char buffer[100]; // Assuming a maximum string length of 100 characters
+        fgets(buffer, sizeof(buffer), stdin);
+        buffer[strcspn(buffer, "\n")] = '\0'; // Remove trailing newline
+        strings[i] = strdup(buffer); // Duplicate the input string
+    }
+// Sort the strings
+    qsort(strings, n, sizeof(char *), compareStrings);
+
+    // Print the sorted strings
+    printf("\nSorted strings:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%s\n", strings[i]);
+        free(strings[i]); // Free memory allocated for each string
+    }
+
+    free(strings); // Free the array of strings
+    
+    return 0;
+}
