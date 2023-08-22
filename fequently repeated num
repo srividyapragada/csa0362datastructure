@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+void findFrequentlyRepeatedNumbers(int arr[], int size, int minFrequency) {
+    for (int i = 0; i < size; i++) {
+        int count = 0;
+        for (int j = 0; j < size; j++) {
+            if (arr[i] == arr[j]) {
+                count++;
+            }
+        }
+        if (count >= minFrequency) {
+            printf("%d is repeated %d times.\n", arr[i], count);
+        }
+    }
+}
+
+int main() {
+    int array[] = {1, 2, 3, 2, 4, 5, 6, 5, 4, 5}; // Replace this with your array
+    int size = sizeof(array) / sizeof(array[0]);
+
+    int minFrequency = 2; // Adjust this value to set the minimum frequency
+
+    findFrequentlyRepeatedNumbers(array, size, minFrequency);
+    
+    return 0;
+}
