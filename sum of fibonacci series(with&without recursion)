@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+// Function to calculate the nth Fibonacci number using recursion
+int fibonacciRecursive(int n) {
+    if (n <= 1)
+        return n;
+    return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+}
+
+// Function to calculate the sum of the first n Fibonacci numbers using iteration
+int fibonacciSumIterative(int n) {
+    if (n <= 0)
+        return 0;
+
+    int fibSum = 0;
+    int prev = 0, curr = 1;
+
+    for (int i = 1; i <= n; i++) {
+        fibSum += curr;
+        int next = prev + curr;
+        prev = curr;
+        curr = next;
+    }
+
+    return fibSum;
+}
+
+int main() {
+    int n = 6; // Change this value to the desired n
+
+    printf("Fibonacci Sum (with recursion) for n = %d: %d\n", n, fibonacciRecursive(n));
+    printf("Fibonacci Sum (without recursion) for n = %d: %d\n", n, fibonacciSumIterative(n));
+    
+    return 0;
+    
+    
+    
+}
