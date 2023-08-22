@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+int findLargestElement(int mat[][COLS]) {
+    int largest = mat[0][0];
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (mat[i][j] > largest) {
+                largest = mat[i][j];
+            }
+        }
+    }
+    return largest;
+}
+
+int main() {
+    int matrix[ROWS][COLS] = {
+        {5, 2, 9},
+        {8, 1, 4},
+        {3, 7, 6}
+    };
+
+    int largest = findLargestElement(matrix);
+
+    printf("The largest element in the matrix is: %d\n", largest);
+    
+    return 0;
+}
