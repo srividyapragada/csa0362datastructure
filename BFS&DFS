@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_VERTICES 10
+
+// Function to perform Breadth-First Search
+void BFS(int graph[][MAX_VERTICES], int vertices, int start) {
+    bool visited[MAX_VERTICES] = {false};
+    int queue[MAX_VERTICES];
+    int front = -1, rear = -1;
+
+    visited[start] = true;
+    queue[++rear] = start;
+
+    while (front != rear) {
+        int currentVertex = queue[++front];
+        printf("%d ", currentVertex);
+
+        for (int i = 0; i < vertices; i++) {
+            if (graph[currentVertex][i] && !visited[i]) {
+                visited[i] = true;
+                queue[++rear] = i;
+            }
+        }
+    }
+}
+
+// Function to perform Depth-First Search
+void DFS(int graph[][MAX_VERTICES], int vertices, int vertex, bool visited[]) {
+    visited[vertex] = true;
+    printf("%d ", vertex);
+
+    for (int i = 0; i < vertices; i++) {
+        if (graph[vertex][i] && !visited[i]) {
+            DFS(graph, vertices, i, visited);
+        }
+    }
+}
+
+int main() {
+    int graph[MAX_VERTICES][MAX_VERTICES];
+    int vertices, edges;
+
+    printf("Enter the number of vertices and edges: ");
+    scanf("%d %d", &vertices, &edges);
+
+    if (vertices > MAX_VERTICES) {
+        printf("Too many vertices. Maximum allowed is %d.\n", MAX_VERTICES);
+        return 1;
+    }
+
+    for (int i = 0; i < vertices; i++) {
+        for (int j = 0; j < vertices; j++) {
+            graph[i][j] = 0;
+        }
+    }
+
+    printf("Enter the edges:\n");
+    for (int i = 0; i < edges; i++) {
+        int u, v;
+        scanf("%d %d", &u, &v);
+        graph[u][v] = graph[v][u] = 1; // Assuming an undirected graph
+    }
+
+    int startVertex;
+    printf("Enter the start vertex: ");
+    scanf("%d", &startVertex);
+
+    printf("BFS traversal: ");
+    BFS(graph, vertices, startVertex);
+    printf("\n");
+
+    bool visited[MAX_VERTICES] = {false};
+    printf("DFS traversal: ");
+    DFS(graph, vertices, startVertex, visited);
+    printf("\n");
+    
+    return 0;
+}
